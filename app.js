@@ -40,7 +40,11 @@ app.post("/users/register", async (req, res) => {
       isAdmin: false,
     });
 
-    INFORMATION.push({ name: body.name, info: `${body.name} info` });
+    INFORMATION.push({
+      name: body.name,
+      info: `${body.name} info`,
+      email: body.email,
+    });
 
     res.status(201).send("Register Success");
   } catch (e) {
@@ -69,7 +73,7 @@ app.post("/users/login", async (req, res) => {
     res.status(200).json({
       accessToken: accessToken,
       refreshToken: refreshToken,
-      userName: user.name,
+      name: user.name,
       isAdmin: user.isAdmin,
     });
   } else {
